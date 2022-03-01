@@ -42,8 +42,8 @@ def get_ip_range(start_ip, end_ip):
 
 def scan_addresses(proxies, addresses, wordlist):
     i = 0
-
     for ip_address in addresses:
+        print(f'Trying {ip_address}')
         proxy_dict = {
             "http": f'http://{proxies[i]}',
             "https": f'https://{proxies[i]}',
@@ -53,6 +53,7 @@ def scan_addresses(proxies, addresses, wordlist):
             try:
                 response = requests.get(f'http://{ip_address}:{port}', proxies=proxy_dict)
                 if response.status_code == 200:
+                    print(f'Brute forcing {ip_address}')
                     router = Router(proxies, ip_address, wordlist, port)
                     threads.append(router)
             except:
