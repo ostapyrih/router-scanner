@@ -86,5 +86,5 @@ if __name__ == "__main__":
     addresses = get_ip_range(address.split("-")[0], address.split("-")[1])
 
     thread = threading.Thread(target=threads_manager, args=(threads,))
-    # thread.start()
+    thread.start()
     scan_addresses(proxies, addresses, wordlist)
